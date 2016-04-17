@@ -2,41 +2,43 @@ require('shelljs/global');
 var Rwg = require('random-word-generator');
 var fs = require('fs');
 
-var newWord = new Rwg();
-newWord.generate(); // yields something like Takalonazu
-
 var numCommits = Math.floor(Math.random() * 15) + 1;  
+var newWord = new Rwg();
 
-console.log('numCommits', numCommits);
-exec('git checkout test', {async: false});
+/**
+  This is a a little lazy, but checkout to a new branch first.
+  if branch already exists, then -b will fail.  Then you can 
+  checkout to the existing branch.
+  The vice versa scenario works as well.  If test doesn't exist,
+  then -b will create new branch, then checkout without -b will
+  just tell you that you are already on that branch.
+*/
+syncExec('git checkout -b test');
+syncExec('git checkout test');
 
-for (i = 0; i <= numCommits; i++) {
+// loop through commits
+for (i = 0; i < numCommits; i++) {
+
   var numWords = Math.floor(Math.random() * 7) + 1;
-  console.log('numWords', numWords);
   var sentence = '';
+
+  // append sentence
   for (a = 0; a <= numWords; a++) {
     sentence += newWord.generate() + ' ';
   }
+
   sentence = sentence.trim();
-  console.log('appending sentence', sentence + '\n');
-  fs.appendFileSync('52331.txt', sentence);
-/*
-  fs.appendFile('52331.txt', sentence, function (err) {
-    echo('error appending', err);
-  });
-*/
-  exec('git add 52331.txt', { async: false });
-  exec('git commit -m "' + newWord.generate() + '"', { async: false });
+  console.log('appending sentence', sentence + '\r\n');
+  fs.appendFileSync('52331.txt', sentence + '\r\n');
 
+  syncExec('git add 52331.txt');
+  syncExec('git commit -m "' + newWord.generate() + '"');
 }
 
-exec('git push origin test', { async: false });
+syncExec('git push origin test');
+syncExec('git checkout master');
 
-//exec('git checkout master');
-
-/*
-if (exec('git commit -am "Auto-commit"').code !== 0) {
-  echo('Error: Git commit failed');
-  exit(1);
+function syncExec(cmd) {
+  exec(cmd, { async: false });
 }
-*/
+
