@@ -1,0 +1,23 @@
+{
+  "name": "covert-foal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benwells/covert-foal.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/benwells/covert-foal/issues"
+  },
+  "homepage": "https://github.com/benwells/covert-foal#readme",
+  "dependencies": {
+    "random-word-generator": "^0.9.9",
+    "shelljs": "^0.6.0"
+  }
+}
