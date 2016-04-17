@@ -36,7 +36,9 @@ for (i = 0; i < numCommits; i++) {
 }
 
 syncExec('git push origin test');
+syncExec('git push --delete origin test');
 syncExec('git checkout master');
+syncExec('git branch -D test');
 
 function syncExec(cmd) {
   exec(cmd, { async: false });
