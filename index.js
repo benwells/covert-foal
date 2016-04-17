@@ -7,8 +7,11 @@ newWord.generate(); // yields something like Takalonazu
 
 var numCommits = Math.floor(Math.random() * 15) + 1;  
 
+console.log('numCommits', numCommits);
+
 for (i = 0; i <= numCommits; i++) {
   var numWords = Math.floor(Math.random() + 7) + 1;
+  console.log('numWords', numWords);
   var sentence = '';
   for (i = 0; i <= numWords; i++) {
     sentence += newWord.generate() + ' ';
