@@ -10,15 +10,16 @@ var numCommits = Math.floor(Math.random() * 15) + 1;
 console.log('numCommits', numCommits);
 
 for (i = 0; i <= numCommits; i++) {
-  var numWords = Math.floor(Math.random() + 7) + 1;
+  var numWords = Math.floor(Math.random() * 7) + 1;
   console.log('numWords', numWords);
   var sentence = '';
-  for (i = 0; i <= numWords; i++) {
+  for (a = 0; a <= numWords; a++) {
     sentence += newWord.generate() + ' ';
   }
   sentence = sentence.trim();
+  console.log('appending sentence', sentence + '\n');
   fs.appendFile('52331.txt', sentence, function (err) {
-    echo('error appending');
+    echo('error appending', err);
   });
   exec('git add .');
   exec('git commit -m "' + newWord.generate() + '"');
