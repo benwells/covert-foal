@@ -2,7 +2,7 @@ require('shelljs/global');
 var Rwg = require('random-word-generator');
 var fs = require('fs');
 
-var maxCommits = 9;
+var maxCommits = 6;
 var numCommits = Math.floor(Math.random() * maxCommits) + 1;  
 var newWord = new Rwg();
 
