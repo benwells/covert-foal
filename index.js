@@ -8,8 +8,9 @@ newWord.generate(); // yields something like Takalonazu
 var numCommits = Math.floor(Math.random() * 15) + 1;  
 
 console.log('numCommits', numCommits);
-exec('git checkout test');
+exec('git checkout test', {async: false});
 
+return;
 for (i = 0; i <= numCommits; i++) {
   var numWords = Math.floor(Math.random() * 7) + 1;
   console.log('numWords', numWords);
@@ -22,14 +23,14 @@ for (i = 0; i <= numCommits; i++) {
   fs.appendFile('52331.txt', sentence, function (err) {
     echo('error appending', err);
   });
-  exec('git add .');
-  exec('git commit -m "' + newWord.generate() + '"');
+  exec('git add 52331.txt', { async: false });
+  exec('git commit -m "' + newWord.generate() + '"', { async: false });
 
 }
 
-exec('git push origin test');
+exec('git push origin test', { async: false });
 
-exec('git checkout master');
+//exec('git checkout master');
 
 /*
 if (exec('git commit -am "Auto-commit"').code !== 0) {
