@@ -25,10 +25,10 @@ for (i = 0; i < numCommits; i++) {
   syncExec('git commit -m "' + newWord.generate() + '"');
 }
 
+
+syncExec('git rm 52331.txt');
+syncExec('git commit -m "' + newWord.generate() + '"');
 syncExec('git push origin master');
-// syncExec('git push --delete origin test');
-// syncExec('git checkout master');
-// syncExec('git branch -D test');
 
 function syncExec(cmd) {
   exec(cmd, { async: false });
