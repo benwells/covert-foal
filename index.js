@@ -31,6 +31,7 @@ syncExec('git commit -m "' + newWord.generate() + '"');
 syncExec('git push origin master');
 
 function syncExec(cmd) {
+  console.log('calling cmd: ' + cmd);
   exec(cmd, { async: false });
 }
 
